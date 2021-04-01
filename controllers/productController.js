@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { route } = require('./homeController');
+const productService = require('../services/productService');
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.render('home', { title: 'Browse' });
+    let products = productService.getAll();
+    res.render('home', { title: 'Browse', products });
 })
 
 router.get('/create', (req, res) => {
@@ -11,7 +12,8 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    console.log(req.body);
+    ///VALIDATE INPUT(CRUCIAL)
+    productService.create(req.body);
     res.redirect('/products');
 });
 
