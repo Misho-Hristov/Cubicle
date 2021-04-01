@@ -24,7 +24,7 @@ function create(data) {
 
     productsData.push(cube);
 
-    fs.writeFile(__dirname + '/../products.json', JSON.stringify(productsData), (err) => {
+    fs.writeFile(path.join(__dirname, '/../products.json'), JSON.stringify(productsData), (err) => {
         if (err) {
             console.log(err);
             return;
