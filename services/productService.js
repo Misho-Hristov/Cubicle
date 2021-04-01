@@ -1,11 +1,16 @@
 const Cube = require('../models/cube');
 const uniqId = require('uniqid');
 const fs = require('fs');
+const path = require('path');
 
 const productsData = require('../products.json');
 
 function getAll() {
     return productsData;
+}
+
+function getOne(id) {
+    return productsData.find(x => x.id == id);
 }
 
 function create(data) {
@@ -30,5 +35,6 @@ function create(data) {
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    getOne
 }
