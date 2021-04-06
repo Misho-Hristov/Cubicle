@@ -1,7 +1,7 @@
-const productData = require('../products.json');
+const Cube = require('../models/Cube');
 
-function getAll(query) {
-    let products = productData;
+async function getAll(query) {
+    let products = await Cube.find({}).lean();
 
     if (query.search) {
         products = products.filter(x => x.name.toLowerCase().includes(query.search.toLowerCase()));
@@ -19,13 +19,11 @@ function getAll(query) {
 }
 
 function getOne(id) {
-    return productsData.find(x => x.id == id);
+    return Cube.findById(id).lean();
 }
 
 function create(data) {
     let cube = new Cube(data);
-
-    // return productsData.push(cube);
     return cube.save();
 }
 
