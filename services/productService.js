@@ -23,6 +23,10 @@ function getOne(id) {
     return Cube.findById(id).lean();
 }
 
+function getOneWithAccessories(id) {
+    return Cube.findById(id).populate('accessories').lean();
+}
+
 function create(data) {
     let cube = new Cube(data);
     return cube.save();
@@ -33,12 +37,12 @@ async function attachAccessory(productId, accessoryId) {
     let accessory = await Accessory.findById(accessoryId);
     product.accessories.push(accessory);
     return product.save();
-
 }
 
 module.exports = {
     create,
     getAll,
     getOne,
-    attachAccessory
+    attachAccessory,
+    getOneWithAccessories
 }
