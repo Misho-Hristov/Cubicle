@@ -27,7 +27,7 @@ const login = async({ username, password }) => {
     // console.log(isMathced);
 
     //generate token
-    let token = jwt.sign({ _id: user._id }, SECRET);
+    let token = jwt.sign({ _id: user._id, roles: ['admin'] }, SECRET);
     return token;
 }
 
